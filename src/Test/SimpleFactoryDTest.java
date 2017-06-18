@@ -27,12 +27,12 @@ public class SimpleFactoryDTest {
         InterfaceD d = (InterfaceD) injector.getObject("D");
         assertThat(d, is(instanceOf(ImplementationD.class)));
         ImplementationD d1 = (ImplementationD) d;
-        assertThat(d1.getAtribute(), is(42));
+        assertThat(d1.i, is(42));
+        System.out.println("Test D Ok");
     }
     
     public static void main(String[] args) throws DependencyException {
         SimpleFactoryDTest simple_factory_d = new SimpleFactoryDTest();
         simple_factory_d.simple_factory_d();
     }
-    
 }

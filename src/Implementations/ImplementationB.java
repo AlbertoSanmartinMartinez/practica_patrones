@@ -7,7 +7,7 @@ package Implementations;
 
 public class ImplementationB implements InterfaceB {
     
-    private InterfaceD d;
+    public InterfaceD d;
     
     public ImplementationB(InterfaceD d) {
         this.d = d;

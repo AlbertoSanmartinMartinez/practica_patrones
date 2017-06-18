@@ -6,6 +6,6 @@
 package Complex;
 
 //clase para crear nuevas instancias
-public class ComplexContainer {
+public class ComplexContainer implements ComplexInjector {
     
 }

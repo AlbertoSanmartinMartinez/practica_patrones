@@ -13,24 +13,32 @@ import Implementations.*;
 import java.lang.Integer;
 
 //clase que implementa la interfaz SimpleInjector
-public class SimpleContainer implements SimpleInjector, SimpleFactory{
+public class SimpleContainer implements SimpleInjector {
 
-    private Map<String, Object> map_constant;
-    private Map<String, SimpleFactory> map_factory;
+    private Map<String, Integer> map_constant;
+    private Map<String, Object> map_factory;
     
     public SimpleContainer () {
-        this.map_constant = new HashMap<String, Object>();
-        this.map_factory = new HashMap<String, SimpleFactory>();
+        this.map_constant = new HashMap<String, Integer>();
+        this.map_factory = new HashMap<String, Object>();
     }
     
     @Override
     public void registerConstat(String name, Object value) throws DependencyException {
-        System.out.println("Registramos la constante");
+        //System.out.println("Registramos la constante");
         if (map_constant.containsKey(name)) {
             throw new DependencyException("El nombre ya está registrado.");
         }
         else {
-            map_constant.put(name, value); //convertimos obejto en integer
+            map_constant.put(name, (Integer) value);
+            /*
+            if (value instanceof Integer) {
+                map_constant.put(name, (Integer) value);
+            }
+            else if (value instanceof String) {
+                map_constant.put(name, (String) value);
+            }
+            */
         }
     }
 
@@ -49,39 +57,11 @@ public class SimpleContainer implements SimpleInjector, SimpleFactory{
 
     @Override
     public void registerFactory(String name, SimpleFactory creator, String... parameters) throws DependencyException {
-        System.out.println("Registramos la factoria");
-        Object[] params = parameters;
-        
-        Object factory = create(params);
-        if (map_factory.containsKey(name)) {
-            throw new DependencyException("El nombre ya està registrado");
+        //System.out.println("Registramos la factoria");
+        Object[] array = new Object[parameters.length];
+        for (int i=0; i<parameters.length; i++) {
+            array[i] = map_constant.get(parameters[i]);
         }
-        else {
-            map_constant.put(name, creator);
-        }
+        this.map_factory.put(name, creator.create(array));
     }    
-
-    @Override
-    public Object create(Object... param) throws DependencyException {
-        System.out.println("Creamos la factoria");
-        System.out.println("" + param.getClass());
-        /*
-        if (param.getClass()) {
-            
-        }
-        else if () {
-            
-        }
-        else if () {
-            
-        }
-        else if () {
-            
-        }
-        else {
-            throw new DependencyExceptio("Este tipo de factoria no existe");
-        }
-                */
-        return null;
-    }
 }

@@ -9,8 +9,8 @@ import java.util.ArrayList;
 
 public class ImplementationA implements InterfaceA {
     
-    private InterfaceB b;
-    private InterfaceC c;
+    public InterfaceB b;
+    public InterfaceC c;
     
     public ImplementationA (InterfaceB b, InterfaceC c) {
         this.b = b;
