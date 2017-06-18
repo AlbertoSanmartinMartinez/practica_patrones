@@ -22,12 +22,12 @@ public class SimpleFactoryCTest {
     @Test
     public void simple_factory_c () throws DependencyException {
         SimpleInjector injector = new SimpleContainer();
-        injector.registerConstat("S", 42);
+        injector.registerConstat("S", "prueba");
         injector.registerFactory("C", new FactoryC(), "S");
         InterfaceC c = (InterfaceC) injector.getObject("C");
         assertThat(c, is(instanceOf(ImplementationC.class)));
         ImplementationC c1 = (ImplementationC) c;
-        assertThat(c1.s, is(42));
+        assertThat(c1.s, is("prueba"));
         System.out.println("Test C Ok");
     }
     

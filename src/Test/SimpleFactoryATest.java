@@ -6,11 +6,9 @@
 package Test;
 
 import Common.DependencyException;
-import Implementations.ImplementationA;
-import Implementations.InterfaceA;
-import Simple.SimpleContainer;
-import Simple.SimpleInjector;
-import SimpleFactories.FactoryA;
+import Implementations.*;
+import Simple.*;
+import SimpleFactories.*;
 import static org.hamcrest.CoreMatchers.instanceOf;
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
@@ -20,13 +18,19 @@ public class SimpleFactoryATest {
     @Test
     public void simple_factory_a () throws DependencyException {
         SimpleInjector injector = new SimpleContainer();
-        injector.registerConstat("IF2", 42); //revisar el 42
-        injector.registerFactory("A", new FactoryA(), "IF2");
+        InterfaceD d = (InterfaceD) new FactoryD().create((Object)2);
+        InterfaceB b = (InterfaceB) new FactoryB().create((Object)d);
+        InterfaceC c = (InterfaceC) new FactoryC().create((Object)"prueba");
+        injector.registerConstat("IFb", b);
+        injector.registerConstat("IFc", c);
+        injector.registerFactory("A", new FactoryA(), "IFb", "IFc");
         InterfaceA a = (InterfaceA) injector.getObject("A");
         assertThat(a, is(instanceOf(ImplementationA.class)));
         ImplementationA a1 = (ImplementationA) a;
-        assertThat(a1.b, is(42));
-        //assertThat(a1.c, is(42));
+        
+        assertThat(a1.b, is(b));
+        assertThat(a1.c, is(c));
+        
         System.out.println("Test A Ok");
     }
     

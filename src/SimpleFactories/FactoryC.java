@@ -11,7 +11,7 @@ import Simple.SimpleFactory;
 public class FactoryC implements SimpleFactory {
 
     @Override
-    public ImplementationC create(Object[] param) throws DependencyException {
+    public ImplementationC create(Object... param) throws DependencyException {
         String s;
         try {
             s = (String) param[0];

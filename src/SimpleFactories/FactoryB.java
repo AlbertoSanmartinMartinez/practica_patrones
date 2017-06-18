@@ -11,7 +11,7 @@ import Simple.SimpleFactory;
 public class FactoryB implements SimpleFactory {
 
     @Override
-    public ImplementationB create(Object[] param) throws DependencyException {
+    public ImplementationB create(Object... param) throws DependencyException {
         
         InterfaceD d;
         
