@@ -12,9 +12,9 @@ public class ImplementationB implements InterfaceB {
     public ImplementationB(InterfaceD d) {
         this.d = d;
     }
-    /*
-    public InterfaceD getInterface() {
+
+    @Override
+    public InterfaceD getAtribute() {
         return this.d;
     }
-    */
 }

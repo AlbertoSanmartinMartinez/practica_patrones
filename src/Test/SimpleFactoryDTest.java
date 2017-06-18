@@ -8,7 +8,7 @@ package Test;
 import Common.DependencyException;
 import Implementations.ImplementationD;
 import Implementations.InterfaceD;
-import Simple.FactoryD;
+import SimpleFactories.FactoryD;
 import Simple.SimpleContainer;
 import Simple.SimpleInjector;
 
@@ -17,10 +17,6 @@ import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
 import org.junit.Test;
 
-/**
- *
- * @author albertosanmartinmartinez
- */
 public class SimpleFactoryDTest {
 
     @Test
@@ -37,5 +33,6 @@ public class SimpleFactoryDTest {
     public static void main(String[] args) throws DependencyException {
         SimpleFactoryDTest simple_factory_d = new SimpleFactoryDTest();
         simple_factory_d.simple_factory_d();
-    }  
+    }
+    
 }

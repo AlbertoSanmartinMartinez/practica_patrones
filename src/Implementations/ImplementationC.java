@@ -12,4 +12,9 @@ public class ImplementationC implements InterfaceC {
     public ImplementationC (String s) {
         this.s = s;
     }
+
+    @Override
+    public String getAtribute() {
+        return this.s;
+    }
 }

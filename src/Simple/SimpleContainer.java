@@ -9,38 +9,79 @@ import Common.DependencyException;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
+import Implementations.*;
+import java.lang.Integer;
 
 //clase que implementa la interfaz SimpleInjector
-public class SimpleContainer implements SimpleInjector{
+public class SimpleContainer implements SimpleInjector, SimpleFactory{
 
-    private Map<Object, String> map;
+    private Map<String, Object> map_constant;
+    private Map<String, SimpleFactory> map_factory;
     
     public SimpleContainer () {
-        this.map = new HashMap<Object, String>();
+        this.map_constant = new HashMap<String, Object>();
+        this.map_factory = new HashMap<String, SimpleFactory>();
     }
     
     @Override
     public void registerConstat(String name, Object value) throws DependencyException {
-        map.put((Integer) value, name); //convertimos obejto en integer
+        System.out.println("Registramos la constante");
+        if (map_constant.containsKey(name)) {
+            throw new DependencyException("El nombre ya está registrado.");
+        }
+        else {
+            map_constant.put(name, value); //convertimos obejto en integer
+        }
     }
 
     @Override
     public Object getObject(String name) throws DependencyException {
-        Iterator iter = map.keySet().iterator();
-        while (iter.hasNext()) {
-            Object key = iter.next();
-            if (map.get(key).equals(name)) {
-                return key;
-            }
+        if (map_constant.containsKey(name)) {
+            return map_constant.get(name);
         }
-        return new DependencyException("No hay un valor asociado a este nombre.");
+        else if (map_factory.containsKey(name))  {
+            return map_factory.get(name);
+        }
+        else {
+            return new DependencyException("No hay un valor asociado a este nombre.");
+        }
     }
 
     @Override
-    public void registerFactory(String name, SimpleFactory creator, String parameters) throws DependencyException {
-        if () {
+    public void registerFactory(String name, SimpleFactory creator, String... parameters) throws DependencyException {
+        System.out.println("Registramos la factoria");
+        Object[] params = parameters;
+        
+        Object factory = create(params);
+        if (map_factory.containsKey(name)) {
+            throw new DependencyException("El nombre ya està registrado");
+        }
+        else {
+            map_constant.put(name, creator);
+        }
+    }    
+
+    @Override
+    public Object create(Object... param) throws DependencyException {
+        System.out.println("Creamos la factoria");
+        System.out.println("" + param.getClass());
+        /*
+        if (param.getClass()) {
             
         }
-        name= 
-    }    
+        else if () {
+            
+        }
+        else if () {
+            
+        }
+        else if () {
+            
+        }
+        else {
+            throw new DependencyExceptio("Este tipo de factoria no existe");
+        }
+                */
+        return null;
+    }
 }
