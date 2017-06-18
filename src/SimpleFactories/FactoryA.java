@@ -13,17 +13,12 @@ public class FactoryA implements SimpleFactory {
     @Override
     public ImplementationA create(Object... param) throws DependencyException {
         
-        InterfaceB b = null;
-        InterfaceC c = null;
+        InterfaceB b;
+        InterfaceC c;
         
         try {
-            if (param[0] instanceof InterfaceB) {
-                b = (InterfaceB) param[0];
-                
-            }
-            else if (param[0] instanceof InterfaceC) {
-                c = (InterfaceC) param[0];
-            }
+            b = (InterfaceB) param[0];
+            c = (InterfaceC) param[1];
         }
         catch (ClassCastException | ArrayIndexOutOfBoundsException ex) {
             throw new DependencyException(ex);

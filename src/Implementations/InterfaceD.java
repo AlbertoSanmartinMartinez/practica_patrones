@@ -7,5 +7,4 @@ package Implementations;
 
 public interface InterfaceD {
     
-    //public int getAtribute();
 }

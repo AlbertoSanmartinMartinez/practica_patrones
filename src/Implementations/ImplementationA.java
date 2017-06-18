@@ -16,10 +16,4 @@ public class ImplementationA implements InterfaceA {
         this.b = b;
         this.c = c;
     }
-    
-    @Override
-    public Object[] getAtribute() {
-        //ArrayList<Interface> array = new ArraayList<Interface>();
-        return null;
-    }
 }

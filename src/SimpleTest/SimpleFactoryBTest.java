@@ -3,7 +3,7 @@
  * @author albertosanmartinmartinez
  */
 
-package Test;
+package SimpleTest;
 
 import Common.DependencyException;
 import Implementations.ImplementationB;
