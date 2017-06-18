@@ -3,27 +3,37 @@
  * @author albertosanmartinmartinez
  */
 
+
 package Simple;
+import Common.DependencyException;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
 
 //clase que implementa la interfaz SimpleInjector
 public class SimpleContainer implements SimpleInjector{
 
+    private Map<Object, String> map = new HashMap<Object, String>();
+    
     @Override
-    public void registerConstat(String nane, Object value) throws DependencyException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void registerFactory(String name, Factory creator, String parameters) throws DependencyException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void registerConstat(String name, Object value) throws DependencyException {
+        map.put((Integer) value, name); //convertimos obejto en integer
     }
 
     @Override
     public Object getObject(String name) throws DependencyException {
-        
-        //
-        SimpleFactory simple_factory = null;
-        return simple_factory.create(name);
+        Iterator iter = map.keySet().iterator();
+        while (iter.hasNext()) {
+            Object key = iter.next();
+            if (map.get(key).equals(name)) {
+                return key;
+            }
+        }
+        return new DependencyException("No hay un valor asociado a este nombre.");
     }
-    
+
+    @Override
+    public void registerFactory(String name, SimpleFactory creator, String parameters) throws DependencyException {
+        creator.create(name);
+    }    
 }

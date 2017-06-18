@@ -4,6 +4,7 @@
  */
 
 package Simple;
+import Common.*;
 
 //clase que permite al SimpleContainer crear nuevas instancias
 public interface SimpleFactory {

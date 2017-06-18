@@ -5,10 +5,8 @@
 
 package Common;
 
-class DependencyException extends Exception {
-    
-    //private String exception;
-    
+public class DependencyException extends Exception {
+        
     public DependencyException (Exception cause) {
         super(cause);
     }

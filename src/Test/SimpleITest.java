@@ -5,6 +5,6 @@
 
 package Test;
 
-public class TestSimpleIjection {
+public class SimpleITest {
     
 }
