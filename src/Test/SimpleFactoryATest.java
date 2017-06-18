@@ -5,6 +5,6 @@
 
 package Test;
 
-public class SimpleITest {
+public class SimpleFactoryATest {
     
 }

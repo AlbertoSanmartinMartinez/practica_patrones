@@ -13,7 +13,11 @@ import java.util.Map;
 //clase que implementa la interfaz SimpleInjector
 public class SimpleContainer implements SimpleInjector{
 
-    private Map<Object, String> map = new HashMap<Object, String>();
+    private Map<Object, String> map;
+    
+    public SimpleContainer () {
+        this.map = new HashMap<Object, String>();
+    }
     
     @Override
     public void registerConstat(String name, Object value) throws DependencyException {
@@ -34,6 +38,9 @@ public class SimpleContainer implements SimpleInjector{
 
     @Override
     public void registerFactory(String name, SimpleFactory creator, String parameters) throws DependencyException {
-        creator.create(name);
+        if () {
+            
+        }
+        name= 
     }    
 }
